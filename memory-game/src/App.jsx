@@ -1,5 +1,7 @@
+import MemoryGame from "./components/memory-game";
+
 function App() {
-  return <div>Hello World!</div>;
+  return <MemoryGame />;
 }
 
 export default App;
