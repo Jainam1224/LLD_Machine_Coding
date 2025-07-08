@@ -39,6 +39,49 @@ const MemoryGame = () => {
     initializeGame();
   }, [gridSize]);
 
+  const checkMatch = (secondId) => {
+    const [firstId] = flipped;
+    if (cards[firstId].number === cards[secondId].number) {
+      setSolved([...solved, firstId, secondId]);
+      setFlipped([]);
+      setDisabled(false);
+    } else {
+      setTimeout(() => {
+        setFlipped([]);
+        setDisabled(false);
+      }, 1000);
+    }
+  };
+
+  function handleCardClick(id) {
+    if (disabled || won) return; // Prevent action if disabled or already won
+
+    if (flipped.length === 0) {
+      setFlipped([id]); // First card flipped
+      return;
+    }
+
+    if (flipped.length === 1) {
+      setDisabled(true);
+      if (id !== flipped[0]) {
+        setFlipped([...flipped, id]);
+        checkMatch(id);
+      } else {
+        setFlipped([]);
+        setDisabled(false);
+      }
+    }
+  }
+
+  const isFlipped = (id) => flipped.includes(id) || solved.includes(id);
+  const isSolved = (id) => solved.includes(id);
+
+  useEffect(() => {
+    if (solved.length === cards.length && cards.length > 0) {
+      setWon(true);
+    }
+  }, [solved, cards]);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-grey-100 p-4">
       <h1 className="text-3xl font-bold mb-6">Memory Game</h1>
@@ -70,14 +113,36 @@ const MemoryGame = () => {
         {cards.map((card) => {
           return (
             <div
-              className="aspect-square flex items-center justify-center text-xl font-bold rounded-lg cursor-pointer bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"
+              className={`aspect-square flex items-center justify-center text-xl font-bold rounded-lg cursor-pointer transition-colors duration-200 ${
+                isFlipped(card.id)
+                  ? isSolved(card.id)
+                    ? "bg-green-500 text-white"
+                    : "bg-blue-500 text-white"
+                  : "bg-gray-300 text-gray-400"
+              }`}
               key={card.id}
+              onClick={() => handleCardClick(card.id)}
             >
-              {card.number}
+              {isFlipped(card.id) ? card.number : "?"}
             </div>
           );
         })}
       </div>
+
+      {/* Result */}
+      {won && (
+        <div className="mt-4 text-4xl font-bold text-green-600 animate-bounce">
+          You Won!
+        </div>
+      )}
+
+      {/* Reset / Play Again Btn */}
+      <button
+        onClick={initializeGame}
+        className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+      >
+        {won ? "Play Again" : "Reset"}
+      </button>
     </div>
   );
 };
