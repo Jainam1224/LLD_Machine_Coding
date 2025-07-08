@@ -1,5 +1,7 @@
+import CountDownTimer from "./components/countdown-timer";
+
 function App() {
-  return <div>Countdown Timer!</div>;
+  return <CountDownTimer />;
 }
 
 export default App;
