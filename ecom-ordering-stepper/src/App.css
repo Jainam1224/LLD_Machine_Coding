@@ -1,0 +1,112 @@
+/* Styles for the overall stepper container */
+
+.app-header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.stepper-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* CheckoutStepper.css */
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Essential for absolute positioning of progress bar */
+  margin-bottom: 40px; /* Space below the stepper */
+  padding: 0 20px; /* Add some padding to the stepper container if steps are at edges */
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1; /* Distributes steps evenly */
+  position: relative;
+  z-index: 1; /* Ensures steps are above the progress bar */
+  text-align: center;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for visibility */
+}
+
+.step-name {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+  white-space: nowrap; /* Prevents step names from wrapping */
+}
+
+/* Active Step Styles */
+.step.active .step-number {
+  background-color: #007bff; /* Bright blue for active */
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+}
+
+.step.active .step-name {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Complete Step Styles */
+.step.complete .step-number {
+  background-color: #28a745; /* Green for complete */
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
+}
+
+/* Progress Bar Container */
+.progress-bar {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  height: 4px;
+  background-color: #ccc;
+}
+
+.progress {
+  height: 100%;
+  background-color: #28a745;
+  transition: 0.2s ease;
+}
+
+/* Button Styles */
+.btn {
+  padding: 10px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 25px; /* Space above button */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
