@@ -24,6 +24,14 @@ const CountDownTimer = () => {
     secondsRef.current = seconds;
   }, [hours, minutes, seconds]);
 
+  useEffect(() => {
+    return () => {
+      if (countdownRef.current) {
+        clearInterval(countdownRef.current);
+      }
+    };
+  }, []);
+
   const stopInterval = useCallback((state) => {
     if (countdownRef.current) {
       clearInterval(countdownRef.current);
@@ -98,14 +106,6 @@ const CountDownTimer = () => {
     }
     setter(numValue.toString());
   };
-
-  useEffect(() => {
-    return () => {
-      if (countdownRef.current) {
-        clearInterval(countdownRef.current);
-      }
-    };
-  }, []);
 
   const isTimerZero =
     parseInt(hours || "0", 10) === 0 &&
