@@ -1,7 +1,8 @@
+import TicTacToe from "../components/tic-tac-toe";
 import "./App.css";
 
 function App() {
-  return <div>Hello World!</div>;
+  return <TicTacToe />;
 }
 
 export default App;
