@@ -1,7 +1,14 @@
+import { useState } from "react";
+import Folder from "../components/folder";
+import explorer from "../data/data";
 import "./App.css";
 
-function App() {
-  return <div>Hello World!</div>;
-}
+export default function App() {
+  const [explorerData, setExplorerData] = useState(explorer);
 
-export default App;
+  return (
+    <div className="App">
+      <Folder explorer={explorerData} handleInsertNode={() => {}} />
+    </div>
+  );
+}
