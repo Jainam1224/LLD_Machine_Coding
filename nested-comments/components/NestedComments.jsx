@@ -13,6 +13,7 @@ const NestedComments = ({
     comments: commentsData,
     insertComment,
     editComment,
+    deleteComment,
   } = useCommentTree(comments);
 
   const handleCommentChange = (e) => {
@@ -32,6 +33,10 @@ const NestedComments = ({
 
   const handleEdit = (commentId, content) => {
     editComment(commentId, content);
+  };
+
+  const handleDelete = (commentId) => {
+    deleteComment(commentId);
   };
 
   return (
@@ -56,6 +61,7 @@ const NestedComments = ({
           comment={comment}
           onSubmitComment={handleReply}
           onEditComment={handleEdit}
+          onDeleteComment={handleDelete}
         />
       ))}
     </div>

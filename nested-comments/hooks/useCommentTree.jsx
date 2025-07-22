@@ -62,7 +62,22 @@ const useCommentTree = (initialComment) => {
     );
   };
 
-  return { comments, insertComment, editComment };
+  const deleteNode = (tree, nodeId) => {
+    return tree.reduce((acc, node) => {
+      if (node.id === nodeId) {
+        return acc;
+      } else if (node.replies && node.replies.length > 0) {
+        node.replies = deleteNode(node.replies, nodeId);
+      }
+      return [...acc, node];
+    }, []);
+  };
+
+  const deleteComment = (parentCommentId) => {
+    setComments((prevComments) => deleteNode(prevComments, parentCommentId));
+  };
+
+  return { comments, insertComment, editComment, deleteComment };
 };
 
 export default useCommentTree;

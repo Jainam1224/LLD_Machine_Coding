@@ -4,6 +4,7 @@ const Comment = ({
   comment = {},
   onSubmitComment = () => {},
   onEditComment = () => {},
+  onDeleteComment = () => {},
 }) => {
   const [expand, setExpand] = useState(false);
   const [reply, setReply] = useState("");
@@ -35,6 +36,10 @@ const Comment = ({
   const handleEditSubmit = () => {
     onEditComment(comment.id, editedContent);
     setEditMode(false);
+  };
+
+  const handleDelete = () => {
+    onDeleteComment(comment.id);
   };
 
   return (
@@ -72,7 +77,9 @@ const Comment = ({
         <button className="comment-button" onClick={toggleEditMode}>
           Edit
         </button>
-        <button className="comment-button">Delete</button>
+        <button className="comment-button" onClick={handleDelete}>
+          Delete
+        </button>
       </div>
 
       {expand && (
@@ -95,6 +102,8 @@ const Comment = ({
               key={reply.id}
               comment={reply}
               onSubmitComment={onSubmitComment}
+              onEditComment={onEditComment}
+              onDeleteComment={onDeleteComment}
             />
           ))}
         </>
