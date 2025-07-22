@@ -38,7 +38,31 @@ const useCommentTree = (initialComment) => {
     }
   };
 
-  return { comments, insertComment };
+  const editNode = (tree, parentCommentId, content) => {
+    return tree.map((comment) => {
+      if (comment.id === parentCommentId) {
+        return {
+          ...comment,
+          content,
+          timestamp: new Date().toISOString(),
+        };
+      } else if (comment.replies && comment.replies.length > 0) {
+        return {
+          ...comment,
+          replies: editNode(comment.replies, parentCommentId, content),
+        };
+      }
+      return comment;
+    });
+  };
+
+  const editComment = (parentCommentId, content) => {
+    setComments((prevComments) =>
+      editNode(prevComments, parentCommentId, content)
+    );
+  };
+
+  return { comments, insertComment, editComment };
 };
 
 export default useCommentTree;
