@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-const useCommentTree = () => {
-  return <div>useCommentTree</div>;
+const useCommentTree = (initialComment) => {
+  const [comments, setComments] = useState(initialComment);
+  return { comments };
 };
 
 export default useCommentTree;
