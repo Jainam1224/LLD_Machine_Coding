@@ -9,15 +9,22 @@ const NestedComments = ({
   onDelete = () => {},
 }) => {
   const [comment, setComment] = useState("");
-  const { comments: commentsData } = useCommentTree(comments);
+  const { comments: commentsData, insertComment } = useCommentTree(comments);
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (comment) {
+      handleReply(null, comment);
+      setComment("");
+    }
+  };
 
-  const handleReply = () => {};
+  const handleReply = (commentId, content) => {
+    insertComment(commentId, content);
+  };
 
   return (
     <div>

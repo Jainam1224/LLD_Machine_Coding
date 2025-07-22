@@ -12,7 +12,12 @@ const Comment = ({ comment = {}, onSubmitComment = () => {} }) => {
     setExpand(!expand);
   };
 
-  const handleReplySubmit = () => {};
+  const handleReplySubmit = () => {
+    if (reply) {
+      onSubmitComment(comment.id, reply);
+      setReply("");
+    }
+  };
 
   return (
     <div className="comment">
