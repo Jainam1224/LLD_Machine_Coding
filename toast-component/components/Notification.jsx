@@ -17,11 +17,8 @@ const icons = {
 const Notification = ({ type = "info", message, onClose = () => {} }) => {
   return (
     <div className={`notification ${type}`}>
-      {/* icon */}
       {icons[type]}
-      {/* message */}
       {message}
-      {/* close button */}
       <AiOutlineClose
         color="white"
         className="closeBtn"
