@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/themeContext";
 
 const Navbar = () => {
+  const { theme, toggleMode } = useTheme();
   return (
     <nav className="navbar">
       <div>
@@ -11,7 +13,11 @@ const Navbar = () => {
       </div>
       <div className="mode-switch">
         <label>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={toggleMode}
+            checked={theme === "dark"}
+          />
           <span className="slider round"></span>
         </label>
       </div>
