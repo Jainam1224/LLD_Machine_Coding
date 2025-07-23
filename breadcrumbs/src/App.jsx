@@ -8,13 +8,15 @@ import BreadCrumbs from "../component/BreadCrumbs";
 function App() {
   return (
     <BrowserRouter>
-      <h1>RoadsideCoder Store</h1>
-      <BreadCrumbs />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductListing />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-      </Routes>
+      <div className="app">
+        <h1>RoadsideCoder Store</h1>
+        <BreadCrumbs />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductListing />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

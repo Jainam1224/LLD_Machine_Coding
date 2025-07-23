@@ -19,10 +19,10 @@ const Home = () => {
     <div>
       <h2>Home Page</h2>
       <span>Trending Products 🔥</span>
-      <div>
+      <div className="product-grid">
         {products?.map((product) => {
           return (
-            <div key={product.id}>
+            <div key={product.id} className="product-card">
               <Link to={`/products/${product.id}`}>
                 <img src={product.thumbnail} alt={product.title} />
                 <h3>{product.title}</h3>

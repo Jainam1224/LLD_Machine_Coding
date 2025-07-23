@@ -6,7 +6,7 @@ const BreadCrumbs = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
-    <div>
+    <div className="breadcrumbs">
       <Link to="/">Home</Link>
       {pathnames.map((name, index) => {
         const currentPath = `/${pathnames.slice(0, index + 1).join("/")}`;

@@ -17,9 +17,9 @@ const ProductListing = () => {
   return (
     <div>
       <h2>Product Listing</h2>
-      <div>
+      <div className="product-grid">
         {products?.map((product) => (
-          <div key={product.id}>
+          <div key={product.id} className="product-card">
             <Link to={`/products/${product.id}`}>
               <img src={product.thumbnail} alt={product.title} />
               <h3>{product.title}</h3>
